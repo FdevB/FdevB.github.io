@@ -1,0 +1,13 @@
+---
+// Pixel-art bonfire. lit=true → orange flame, otherwise ash-gray.
+const { lit = true, size = 3, class: cls = '' } = Astro.props;
+const grid = [
+  '.....f.....', '....fff....', '...fffff...', '..fffffff..', '...fffff...', '....fff....',
+  '.l..fff..l.', '..l.fff.l..', '...lllll...', '..l.....l..', '.l.......l.',
+];
+const flame = lit ? 'var(--color-ember)' : 'var(--color-ash)';
+---
+<svg class={cls} width={11 * size} height={11 * size} viewBox="0 0 11 11" shape-rendering="crispEdges" aria-hidden="true">
+  {grid.flatMap((row, y) => [...row].map((c, x) => c === '.' ? null :
+    <rect x={x} y={y} width="1" height="1" fill={c === 'f' ? flame : 'var(--color-ash)'} />))}
+</svg>

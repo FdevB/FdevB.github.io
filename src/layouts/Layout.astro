@@ -1,0 +1,27 @@
+---
+import '../styles/global.css';
+import { getImage } from 'astro:assets';
+import { site } from '../data/content';
+import ogSrc from '../assets/hero.png';
+const og = new URL((await getImage({ src: ogSrc, width: 1200, format: 'jpg', quality: 80 })).src, Astro.site).href;
+const favicon = `data:image/svg+xml,${encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 11 11" shape-rendering="crispEdges"><g fill="#e8832a"><rect x="5" y="0" width="1" height="1"/><rect x="4" y="1" width="3" height="1"/><rect x="3" y="2" width="5" height="1"/><rect x="2" y="3" width="7" height="1"/><rect x="3" y="4" width="5" height="1"/><rect x="4" y="5" width="3" height="1"/></g><g fill="#8a93a6"><rect x="1" y="6" width="1" height="1"/><rect x="9" y="6" width="1" height="1"/><rect x="3" y="8" width="5" height="1"/><rect x="2" y="9" width="1" height="1"/><rect x="8" y="9" width="1" height="1"/></g></svg>')}`;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="dark" />
+    <meta name="theme-color" content="#07080c" />
+    <title>{site.title}</title>
+    <meta name="description" content={site.description} />
+    <link rel="icon" href={favicon} />
+    <link rel="canonical" href={Astro.url.href} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={site.title} />
+    <meta property="og:description" content={site.description} />
+    <meta property="og:image" content={og} />
+    <meta name="twitter:card" content="summary_large_image" />
+  </head>
+  <body><slot /></body>
+</html>

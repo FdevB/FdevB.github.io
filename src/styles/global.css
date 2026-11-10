@@ -1,0 +1,49 @@
+@import 'tailwindcss';
+@import '@fontsource/cinzel/400.css';
+@import '@fontsource/cinzel/500.css';
+@import '@fontsource-variable/inter';
+@import '@fontsource/pixelify-sans/400.css';
+@import '@fontsource/jetbrains-mono/400.css';
+
+@theme {
+  --color-abyss: #07080c;
+  --color-night: #0e1424;
+  --color-moon: #6f8fcb;
+  --color-ember: #e8832a;
+  --color-gold: #f2b84b;
+  --color-bone: #e6dcc3;
+  --color-ash: #8a93a6;
+  --color-blood: #8e1b1b;
+  --font-display: 'Cinzel', serif;
+  --font-sans: 'Inter Variable', system-ui, sans-serif;
+  --font-pixel: 'Pixelify Sans', monospace;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+html { scroll-behavior: smooth; background: var(--color-abyss); scroll-padding-top: 88px; }
+body { background: var(--color-abyss); color: var(--color-bone); font-family: var(--font-sans); -webkit-font-smoothing: antialiased; }
+:focus-visible { outline: 2px solid var(--color-gold); outline-offset: 3px; }
+::selection { background: var(--color-ember); color: var(--color-abyss); }
+.pixelated { image-rendering: pixelated; }
+
+.btn { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 0 32px; font-weight: 600; font-size: 15px; transition: box-shadow .2s, background .2s, transform .1s; }
+.btn-primary { background: var(--color-ember); color: var(--color-abyss); box-shadow: 0 0 24px rgb(232 131 42 / .25); }
+.btn-primary:hover { box-shadow: 0 0 32px rgb(232 131 42 / .5); }
+.btn-primary:active { background: #b8621a; transform: translateY(1px); }
+.btn-outline { border: 1px solid var(--color-gold); color: var(--color-bone); }
+.btn-outline:hover { background: rgb(242 184 75 / .08); box-shadow: 0 0 20px rgb(242 184 75 / .2); }
+
+.nav-link { position: relative; }
+.nav-link::after { content: ''; position: absolute; left: 0; right: 0; bottom: 20px; height: 1px; background: var(--color-gold); transform: scaleX(0); transition: transform .25s; }
+.nav-link[data-active='true']::after { transform: scaleX(1); }
+.nav-link[data-active='true'] { color: var(--color-gold); }
+
+@keyframes pulse-ring { 0%,100% { box-shadow: 0 0 18px rgb(232 131 42 / .45); } 50% { box-shadow: 0 0 32px rgb(232 131 42 / .8); } }
+@keyframes flicker { 0%,100% { opacity: 1; } 50% { opacity: .78; } }
+.darksign { animation: pulse-ring 3.6s ease-in-out infinite; }
+.flame { animation: flicker 1.8s steps(2) infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .darksign, .flame { animation: none; }
+}

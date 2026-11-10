@@ -1,0 +1,73 @@
+---
+import { Image } from 'astro:assets';
+import Bonfire from './Bonfire.astro';
+import heroImg from '../assets/hero.png';
+import { hero } from '../data/content';
+---
+<section id="top" class="relative overflow-hidden">
+  <canvas id="embers" class="pointer-events-none absolute inset-0 z-10 size-full" aria-hidden="true"></canvas>
+
+  <div class="relative mx-auto grid max-w-[1168px] items-center gap-12 px-6 pb-24 pt-12 lg:min-h-[calc(100svh-66px)] lg:grid-cols-[1fr_600px] lg:gap-0 lg:px-0 lg:pt-16">
+    <div class="relative z-20">
+      <div class="flex items-center gap-5">
+        <span class="darksign grid size-16 shrink-0 place-items-center rounded-full border-2 border-ember p-[3px]">
+          <Image src={heroImg} alt="" width={128} height={128} class="pixelated size-full rounded-full object-cover" />
+        </span>
+        <div>
+          <p class="text-[13px] font-medium uppercase tracking-[.2em] text-gold">{hero.eyebrow}</p>
+          <p class="mt-1 text-ash">{hero.motto}</p>
+        </div>
+      </div>
+
+      <h1 class="mt-10 font-display text-[clamp(56px,9vw,112px)] leading-none tracking-[.04em] text-gold" style="text-shadow:0 0 40px rgb(242 184 75/.18)">
+        {hero.name.toUpperCase()}
+      </h1>
+      <p class="mt-8 text-[clamp(20px,2.4vw,28px)] text-bone">{hero.role}</p>
+      <p class="mt-6 max-w-[34ch] text-lg leading-relaxed text-ash lg:max-w-[40ch]">{hero.tagline}</p>
+
+      <div class="mt-10 flex flex-col gap-4 sm:flex-row">
+        <a href={hero.primary.href} class="btn btn-primary">{hero.primary.label}</a>
+        <a href={hero.secondary.href} class="btn btn-outline">{hero.secondary.label}</a>
+      </div>
+      <p class="mt-10 flex items-center gap-3 text-ash"><span class="size-2 rounded-full bg-ember shadow-[0_0_8px_var(--color-ember)]"></span>{hero.availability}</p>
+    </div>
+
+    <div class="relative mx-auto aspect-square w-full max-w-[600px] lg:max-w-none">
+      <div class="absolute -inset-3 rounded-full bg-abyss ring-1 ring-white/10 lg:-inset-5"></div>
+      <Image src={heroImg} alt="Pixel-art night scene: a developer at a laptop beside a sleeping wolf, a moonlit castle in the window" widths={[480, 720, 1080]} sizes="(min-width:1024px) 600px, 90vw" loading="eager" class="pixelated relative size-full rounded-full object-cover" />
+      <div class="pointer-events-none absolute inset-0 rounded-full shadow-[inset_0_0_80px_rgb(7_8_12/.55)]"></div>
+    </div>
+  </div>
+
+  <a href="#status" class="absolute bottom-6 left-1/2 z-20 hidden -translate-x-1/2 flex-col items-center gap-3 text-[12px] uppercase tracking-[.3em] text-ash lg:flex">
+    <Bonfire size={3} class="flame" />Scroll to descend
+  </a>
+</section>
+
+<script>
+  // Floating pixel embers (hero only). Skipped when reduced motion is requested.
+  const c = document.getElementById('embers') as HTMLCanvasElement | null;
+  if (c && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const ctx = c.getContext('2d')!;
+    let w = 0, h = 0;
+    const size = () => { w = c.width = c.offsetWidth; h = c.height = c.offsetHeight; };
+    size(); addEventListener('resize', size);
+    const N = innerWidth < 768 ? 18 : 36;
+    const mk = (init = false) => ({ x: Math.random() * w, y: init ? Math.random() * h : h + 10, r: 1 + Math.random() * 1.6, v: 0.25 + Math.random() * 0.5, d: Math.random() * 6.28 });
+    const ps = Array.from({ length: N }, () => mk(true));
+    let run = true;
+    const tick = () => {
+      if (!run) return;
+      ctx.clearRect(0, 0, w, h);
+      for (const p of ps) {
+        p.y -= p.v; p.d += 0.02; p.x += Math.sin(p.d) * 0.3;
+        if (p.y < -10) Object.assign(p, mk());
+        ctx.fillStyle = `rgba(232,131,42,${Math.max(0, Math.min(0.8, p.y / h))})`;
+        ctx.fillRect(Math.round(p.x), Math.round(p.y), Math.ceil(p.r), Math.ceil(p.r));
+      }
+      requestAnimationFrame(tick);
+    };
+    new IntersectionObserver(([e]) => { const was = run; run = e.isIntersecting; if (run && !was) tick(); }).observe(c);
+    tick();
+  }
+</script>

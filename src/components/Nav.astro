@@ -1,0 +1,54 @@
+---
+import Bonfire from './Bonfire.astro';
+import { nav, site } from '../data/content';
+const base = import.meta.env.BASE_URL;
+const resumeHref = `${base}${site.resume}`.replace('//', '/');
+---
+<header class="sticky top-0 z-50 border-b border-white/10 bg-abyss/90 backdrop-blur">
+  <div class="mx-auto flex h-16 max-w-[1168px] items-center justify-between px-6 lg:h-[66px] lg:px-0">
+    <a href="#top" class="flex items-center gap-4" aria-label="Farham, back to top">
+      <Bonfire size={3} class="flame" /><span class="font-display text-xl text-gold">F /</span>
+    </a>
+
+    <nav class="hidden items-center gap-12 md:flex" aria-label="Primary">
+      {nav.map((i) => (
+        <a href={`#${i.id}`} data-nav={i.id} class="nav-link py-6 text-[15px] text-ash transition-colors hover:text-bone">{i.label}</a>
+      ))}
+      <a href={resumeHref} download class="border border-gold/50 px-4 py-2 text-sm text-bone transition hover:bg-gold/10 hover:shadow-[0_0_16px_rgb(242_184_75/.2)]">Download Résumé</a>
+    </nav>
+
+    <button id="menu-btn" class="grid size-11 place-items-center border border-white/20 md:hidden" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu">
+      <Bonfire size={3} class="flame" />
+    </button>
+  </div>
+
+  <nav id="mobile-menu" class="hidden border-t border-white/10 px-6 pb-4 md:hidden" aria-label="Mobile">
+    <ul>
+      {nav.map((i) => (
+        <li><a href={`#${i.id}`} data-nav={i.id} class="flex items-baseline gap-6 py-4 text-lg text-bone data-[active=true]:text-gold">
+          <span class="font-pixel text-sm text-ash">{i.n}</span>{i.label}</a></li>
+      ))}
+      <li><a href={resumeHref} download class="flex items-baseline gap-6 py-4 text-lg text-gold"><span class="font-pixel text-sm text-ash">↓</span>Download Résumé</a></li>
+    </ul>
+  </nav>
+</header>
+
+<script>
+  const btn = document.getElementById('menu-btn')!;
+  const menu = document.getElementById('mobile-menu')!;
+  const setOpen = (o: boolean) => { menu.classList.toggle('hidden', !o); btn.setAttribute('aria-expanded', String(o)); };
+  btn.addEventListener('click', () => setOpen(menu.classList.contains('hidden')));
+  menu.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => setOpen(false)));
+  addEventListener('keydown', (e) => e.key === 'Escape' && setOpen(false));
+
+  // Highlight the nav item of the section in view
+  const links = document.querySelectorAll<HTMLElement>('[data-nav]');
+  const ids = [...new Set([...links].map((l) => l.dataset.nav!))];
+  const sections = ids.map((id) => document.getElementById(id)).filter(Boolean) as HTMLElement[];
+  if (sections.length) {
+    const io = new IntersectionObserver((es) => es.forEach((e) => {
+      if (e.isIntersecting) links.forEach((l) => (l.dataset.active = String(l.dataset.nav === e.target.id)));
+    }), { rootMargin: '-45% 0px -50% 0px' });
+    sections.forEach((s) => io.observe(s));
+  }
+</script>
