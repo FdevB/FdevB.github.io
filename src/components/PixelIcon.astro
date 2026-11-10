@@ -1,0 +1,12 @@
+---
+const { i = 0, class: cls = '' } = Astro.props;
+const icons = [
+  ['..####..', '.##..##.', '##....##', '#......#', '#......#', '##....##', '.##..##.', '..####..'],
+  ['########', '#......#', '########', '........', '########', '#......#', '########', '........'],
+  ['...##...', '..####..', '.######.', '########', '.######.', '..####..', '...##...', '........'],
+];
+const g = icons[i % icons.length];
+---
+<svg class={cls} width="24" height="24" viewBox="0 0 8 8" shape-rendering="crispEdges" fill="currentColor" aria-hidden="true">
+  {g.flatMap((r, y) => [...r].map((c, x) => c === '#' ? <rect x={x} y={y} width="1" height="1" /> : null))}
+</svg>

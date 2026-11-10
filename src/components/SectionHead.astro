@@ -1,0 +1,8 @@
+---
+const { n, label, title, sub } = Astro.props;
+---
+<div>
+  <p class="text-[13px] font-medium uppercase tracking-[.2em] text-gold">{n} / {label}</p>
+  <h2 class="mt-6 font-display text-[clamp(32px,5vw,48px)] leading-tight text-bone">{title}</h2>
+  {sub && <p class="mt-6 text-lg text-ash">{sub}</p>}
+</div>

@@ -2,13 +2,17 @@
 import Layout from '../layouts/Layout.astro';
 import Nav from '../components/Nav.astro';
 import Hero from '../components/Hero.astro';
+import Status from '../components/Status.astro';
+import Attributes from '../components/Attributes.astro';
 import ScrollSword from '../components/ScrollSword.astro';
 ---
 <Layout>
   <Nav />
   <main>
     <Hero />
-    <!-- Next: Status, Attributes, Journey, Relics, Library, Summon -->
+    <Status />
+    <Attributes />
+    <!-- Next: Journey, Relics, Library, Summon -->
   </main>
   <ScrollSword />
 </Layout>

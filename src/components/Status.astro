@@ -1,0 +1,23 @@
+---
+import SectionHead from './SectionHead.astro';
+import { status, site } from '../data/content';
+const base = import.meta.env.BASE_URL;
+---
+<section id="status" class="mx-auto max-w-[1168px] border-t border-white/10 px-6 py-24 lg:px-0">
+  <SectionHead n="01" label="STATUS" title={status.title} />
+  <div class="panel mt-12 grid gap-10 p-6 sm:p-10 lg:grid-cols-[1.35fr_1fr] lg:gap-0">
+    <div class="lg:pr-12">
+      <h3 class="font-display text-2xl uppercase text-bone sm:text-[28px]">{status.heading}</h3>
+      <div class="mt-8 max-w-[56ch] space-y-6 text-lg leading-relaxed text-ash">
+        {status.bio.map((p) => <p>{p}</p>)}
+      </div>
+      <ul class="mt-8 flex flex-wrap gap-3">{status.chips.map((c) => <li class="chip">{c}</li>)}</ul>
+      <a href={`${base}${site.resume}`.replace('//', '/')} download class="btn btn-outline mt-8">Download Résumé</a>
+    </div>
+    <dl class="grid auto-rows-min grid-cols-[120px_1fr] gap-x-6 gap-y-5 border-t border-white/10 pt-8 text-[15px] sm:grid-cols-[150px_1fr] lg:border-l lg:border-t-0 lg:pl-12 lg:pt-0">
+      {status.stats.map(([k, v]) => (<><dt class="text-ash">{k}</dt><dd class="text-bone">{v}</dd></>))}
+      <dt class="text-ash">Status</dt>
+      <dd class="flex items-center gap-3 text-ember"><span class="size-2 rounded-full bg-ember shadow-[0_0_8px_var(--color-ember)]"></span>{status.availability}</dd>
+    </dl>
+  </div>
+</section>

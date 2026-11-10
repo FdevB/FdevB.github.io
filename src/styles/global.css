@@ -47,3 +47,8 @@ body { background: var(--color-abyss); color: var(--color-bone); font-family: va
   html { scroll-behavior: auto; }
   .darksign, .flame { animation: none; }
 }
+
+.panel { background: var(--color-night); border: 1px solid rgb(242 184 75 / .28); }
+.chip { border: 1px solid rgb(255 255 255 / .18); padding: 8px 16px; font-size: 14px; color: var(--color-bone); }
+.skill { transition: box-shadow .2s, border-color .2s; }
+.skill:hover, .skill:focus-visible { box-shadow: 0 0 24px var(--glow); border-color: var(--glow); }
