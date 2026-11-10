@@ -1,0 +1,13 @@
+---
+import Layout from '../layouts/Layout.astro';
+const base = import.meta.env.BASE_URL;
+---
+<Layout>
+  <main class="grid min-h-svh place-items-center px-6 text-center">
+    <div style="animation: fade-in 2s ease-out both">
+      <h1 class="font-display text-[clamp(48px,12vw,128px)] tracking-[.12em] text-blood">YOU DIED</h1>
+      <p class="mt-6 text-ash">This path leads nowhere.</p>
+      <a href={base} class="btn btn-outline mt-10">Return to the bonfire</a>
+    </div>
+  </main>
+</Layout>

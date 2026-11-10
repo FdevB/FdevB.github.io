@@ -1,0 +1,61 @@
+---
+import { contact as c } from '../data/content';
+const icons = ['M0 1h8v6H0zm1 1v1l3 2 3-2V2z', 'M3 0L0 4l3 4M5 0l3 4-3 4', 'M1 0h6v8H1zM2 1v1h4V1zm0 2v1h4V3z'];
+---
+<section id="summon" class="mx-auto max-w-[1168px] px-6 py-16 lg:px-0">
+  <div class="panel relative px-6 py-16 text-center sm:px-10 sm:py-20">
+    <p class="text-[13px] font-medium uppercase tracking-[.2em] text-gold">06 / SUMMON</p>
+    <h2 class="mt-8 font-display text-[clamp(32px,5.5vw,56px)] uppercase leading-tight text-bone">{c.title}</h2>
+    <p class="mx-auto mt-6 max-w-[40ch] text-lg text-ash">{c.sub}</p>
+
+    <svg class="mx-auto mt-12 drop-shadow-[0_0_10px_rgb(242_184_75/.55)]" width="200" height="44" viewBox="0 0 25 5.5" shape-rendering="crispEdges" fill="#f2b84b" aria-hidden="true">
+      {[0, 3.5, 7, 10.5, 14, 17.5, 21].map((x, i) => (
+        <g transform={`translate(${x} ${i % 2 ? 0.5 : 0})`}><rect x="1" y="0" width="1" height="4" /><rect x="0" y="1" width="3" height="1" /></g>
+      ))}
+    </svg>
+
+    <div class="mx-auto mt-12 grid max-w-[720px] grid-cols-2 gap-4 sm:grid-cols-4">
+      <a href={`mailto:${c.email}`} class="btn btn-primary !px-4 gap-3"><svg width="16" height="16" viewBox="0 0 8 8" fill="currentColor" shape-rendering="crispEdges"><path d={icons[0]} fill-rule="evenodd"/></svg>Email</a>
+      {c.links.map((l, i) => (
+        <a href={l.href} class="btn btn-outline !px-4 gap-3 !font-semibold text-bone"><svg width="16" height="16" viewBox="0 0 8 8" fill="#f2b84b" shape-rendering="crispEdges"><path d={icons[(i % 2) + 1]} fill-rule="evenodd"/></svg>{l.label}</a>
+      ))}
+    </div>
+
+    <form id="summon-form" class="mx-auto mt-14 grid max-w-[560px] gap-4 text-left" data-endpoint={c.formEndpoint} data-email={c.email} novalidate>
+      <label class="grid gap-2 text-sm text-ash">Name<input name="name" required autocomplete="name" class="min-h-12 border border-white/20 bg-abyss px-4 text-bone placeholder:text-ash/60" /></label>
+      <label class="grid gap-2 text-sm text-ash">Email<input name="email" type="email" required autocomplete="email" class="min-h-12 border border-white/20 bg-abyss px-4 text-bone" /></label>
+      <label class="grid gap-2 text-sm text-ash">Message<textarea name="message" rows="4" required class="border border-white/20 bg-abyss p-4 text-bone"></textarea></label>
+      <input name="company" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
+      <button class="btn btn-primary mt-2" type="submit">Send Summon</button>
+      <p id="summon-status" role="status" class="min-h-6 text-center text-sm text-ash"></p>
+    </form>
+  </div>
+
+  <footer class="mt-16 flex flex-col justify-between gap-2 border-t border-white/10 pt-8 text-sm text-ash sm:flex-row">
+    <p>{c.footerLeft}</p><p>{c.footerRight}</p>
+  </footer>
+</section>
+
+<script>
+  const f = document.getElementById('summon-form') as HTMLFormElement;
+  const st = document.getElementById('summon-status')!;
+  f.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const d = Object.fromEntries(new FormData(f)) as Record<string, string>;
+    if (d.company) return; // honeypot
+    if (!f.checkValidity()) { st.textContent = 'Please fill in your name, a valid email and a message.'; return; }
+    const { endpoint, email } = f.dataset;
+    if (endpoint) {
+      st.textContent = 'Sending…';
+      try {
+        const r = await fetch(endpoint, { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify(d) });
+        if (!r.ok) throw new Error();
+        f.reset(); st.textContent = 'Summon sent. I’ll answer soon.';
+      } catch { st.textContent = 'Could not send. Please email me directly instead.'; }
+    } else {
+      const body = encodeURIComponent(`${d.message}\n\n— ${d.name} (${d.email})`);
+      location.href = `mailto:${email}?subject=${encodeURIComponent('Summon from ' + d.name)}&body=${body}`;
+      st.textContent = 'Opening your email app…';
+    }
+  });
+</script>

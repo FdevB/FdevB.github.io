@@ -1,0 +1,20 @@
+---
+import { library as l } from '../data/content';
+---
+<section class="mx-auto max-w-[1168px] border-t border-white/10 px-6 py-16 lg:px-0">
+  <div class="grid items-center gap-10 lg:grid-cols-[1fr_2fr]">
+    <div>
+      <p class="text-[13px] font-medium uppercase tracking-[.2em] text-gold">05 / LIBRARY</p>
+      <h2 class="mt-4 font-display text-[clamp(28px,4vw,40px)] uppercase leading-tight text-bone">{l.title}</h2>
+      <p class="mt-4 text-lg text-ash">{l.sub}</p>
+    </div>
+    <ul class="grid gap-3 sm:grid-cols-5">
+      {l.books.map((b, i) => (
+        <li class={`flex items-center gap-3 border p-4 sm:aspect-[6/7] sm:flex-col sm:items-start sm:justify-between ${i % 2 ? 'border-moon/30 bg-night text-moon' : 'border-gold/30 bg-[#12100b] text-gold'}`}>
+          <svg width="16" height="16" viewBox="0 0 8 8" fill="currentColor" shape-rendering="crispEdges" aria-hidden="true"><path d="M1 0h6v8H1zM2 1v1h4V1zm0 2v1h4V3zm0 2v1h3V5z" fill-rule="evenodd" /></svg>
+          <span class="font-pixel text-[13px] leading-tight text-bone">{b}</span>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>

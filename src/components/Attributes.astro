@@ -18,7 +18,7 @@ const SEG = 8;
     </div>
 
     {a.tabs.map((t, i) => (
-      <div role="tabpanel" id={`panel-${t.id}`} aria-labelledby={`tab-${t.id}`} hidden={i !== 0} class="mt-6 grid grid-cols-2 gap-4">
+      <div role="tabpanel" id={`panel-${t.id}`} aria-labelledby={`tab-${t.id}`} hidden={i !== 0} class="skill-grid mt-6 grid grid-cols-2 gap-4">
         {t.skills.map((s, j) => {
           const filled = s.level ? Math.max(1, Math.round((s.level / a.max) * SEG)) : 0;
           const glow = t.tone === 'moon' ? 'rgb(111 143 203 / .55)' : 'rgb(232 131 42 / .5)';
@@ -36,7 +36,7 @@ const SEG = 8;
                   {Array.from({ length: SEG }, (_, k) => <span class={`h-[3px] ${k < filled ? bar : 'bg-white/10'}`}></span>)}
                 </div>
               </div>
-              <div role="tooltip" class="panel pointer-events-none absolute inset-x-0 bottom-full z-30 mb-2 translate-y-1 p-4 opacity-0 shadow-xl transition group-hover:translate-y-0 group-hover:opacity-100 group-focus-visible:translate-y-0 group-focus-visible:opacity-100">
+              <div role="tooltip" class="tip pointer-events-none absolute inset-x-0 bottom-full z-30 mb-3 translate-y-1 p-4 opacity-0 transition group-hover:translate-y-0 group-hover:opacity-100 group-focus-visible:translate-y-0 group-focus-visible:opacity-100">
                 <p class="font-pixel text-xs uppercase tracking-wider text-gold">{s.name}</p>
                 <p class="mt-2 text-[15px] text-bone">{s.flavor}</p>
                 <p class="mt-1 text-sm text-ash">{s.use}</p>

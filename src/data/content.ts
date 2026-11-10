@@ -25,11 +25,6 @@ export const hero = {
   availability: 'Open to opportunities',
 };
 
-export const contact = {
-  email: '[you@example.com]',
-  // Paste a Formspree / Web3Forms / your own DRF endpoint here. Empty = mailto: fallback.
-  formEndpoint: '',
-};
 
 export const status = {
   title: 'A builder at the bonfire.',
@@ -84,4 +79,53 @@ export const attributes = {
       { name: '[add more]', flavor: 'An empty slot, waiting for an item.', use: '[Add a tool.]' },
     ] },
   ] as { id: string; label: string; tone: 'ember' | 'moon'; skills: Skill[] }[],
+};
+
+export const journey = {
+  title: 'The bonfire trail.',
+  sub: 'Every system built is another fire kindled.',
+  lit: 'Bonfire lit',
+  items: [
+    { role: 'Backend Developer', org: '[Company]', date: '2023–Present', lit: true, bullets: ['Built and maintained [N] Python / Django APIs.', 'Reduced response time by [X%] with query optimization.'] },
+    { role: 'Freelance Django Developer', org: 'Independent projects', date: '[Date range]', lit: false, bullets: ['Delivered [N] backend services from brief to deployment.', 'Added automated tests with [X%] coverage.'] },
+    { role: 'Education – [Degree]', org: '[Institution]', date: '[Date range]', lit: false, bullets: ['Focused on algorithms, architecture, and mathematics.', 'Completed [N] applied software projects.'] },
+  ],
+};
+
+export const relics = {
+  title: 'The boss archive.',
+  sub: 'Selected builds. Hard problems. Useful outcomes.',
+  featured: {
+    title: 'The Multilingual Archive',
+    desc: 'A Django / DRF blog API with multilingual content, custom authentication, and thoughtful rate limiting.',
+    tags: ['Django', 'DRF', 'PostgreSQL'], label: 'Boss defeated: N+1 queries',
+    demo: { req: 'GET /api/v1/posts/', res: '200 OK', note: 'Authenticated · Rate limited' },
+    live: '#', github: '#',
+  },
+  items: [
+    { title: 'The Backend Toolkit', desc: 'Reusable backend logic. Less boilerplate, more deliberate architecture.', tags: ['Python', 'Django', 'pytest'], label: 'Relic type: developer tools', live: '#', github: '#' },
+    { title: 'Echoes of Knowledge', desc: 'An LLM / RAG app that retrieves context before generating answers.', tags: ['LLM', 'RAG', 'Vector search'], label: 'Boss defeated: lost context', live: '#', github: '#' },
+    { title: 'The Merchant’s Engine', desc: 'An e-commerce backend for products, orders, and reliable checkout.', tags: ['DRF', 'Redis', 'PostgreSQL'], label: 'Relic type: commerce API', live: '#', github: '#' },
+  ],
+};
+
+export const library = {
+  title: 'Currently studying',
+  sub: 'The next chapter is always open.',
+  books: ['Python', 'Django', 'PostgreSQL', 'Algorithms & Math', 'Clean Code'],
+};
+
+export const contact = {
+  title: 'Place your summon sign',
+  sub: 'Have a project or a role in mind? Let’s cooperate.',
+  email: '[you@example.com]',
+  // Paste a Formspree / Web3Forms / your own DRF endpoint here. Empty = mailto: fallback.
+  formEndpoint: '',
+  links: [
+    { label: 'GitHub', href: '[https://github.com/your-name]' },
+    { label: 'LinkedIn', href: '[https://linkedin.com/in/your-name]' },
+    { label: '[Telegram]', href: '[https://t.me/your-name]' },
+  ],
+  footerLeft: 'Praise the Sun \\[T]/',
+  footerRight: '© Farham · Forged with intention.',
 };

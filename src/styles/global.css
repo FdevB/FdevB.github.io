@@ -52,3 +52,29 @@ body { background: var(--color-abyss); color: var(--color-bone); font-family: va
 .chip { border: 1px solid rgb(255 255 255 / .18); padding: 8px 16px; font-size: 14px; color: var(--color-bone); }
 .skill { transition: box-shadow .2s, border-color .2s; }
 .skill:hover, .skill:focus-visible { box-shadow: 0 0 24px var(--glow); border-color: var(--glow); }
+
+/* Attributes: hovered card pops, siblings recede, tooltip is opaque and clearly separate */
+.skill:hover, .skill:focus-visible { z-index: 20; }
+.skill-grid:has(.skill:hover) .skill:not(:hover), .skill-grid:has(.skill:focus-visible) .skill:not(:focus-visible) { opacity: .45; }
+.skill { transition: box-shadow .2s, border-color .2s, opacity .2s; }
+.tip { background: #05060a; border: 1px solid var(--glow); box-shadow: 0 18px 40px rgb(0 0 0 / .9), 0 0 0 1px #000, 0 0 28px var(--glow); }
+.tip::after { content: ''; position: absolute; left: 24px; top: 100%; border: 7px solid transparent; border-top-color: var(--glow); }
+
+/* Relic cards */
+.relic { position: relative; background: var(--color-night); border: 1px solid rgb(242 184 75 / .28); transition: transform .25s, border-color .25s, box-shadow .25s; }
+.relic::before { content: ''; position: absolute; inset: 0; pointer-events: none; opacity: 0; transition: opacity .4s; background: radial-gradient(60% 50% at 30% 110%, rgb(138 147 166 / .12), transparent), radial-gradient(50% 40% at 85% 100%, rgb(111 143 203 / .1), transparent); }
+.relic:hover, .relic:focus-within { transform: translateY(-4px); border-color: var(--color-ember); box-shadow: 0 0 28px rgb(232 131 42 / .3); }
+.relic:hover::before, .relic:focus-within::before { opacity: 1; }
+.corner-br, .corner-tr, .corner-bl { position: absolute; width: 14px; height: 14px; border: 0 solid var(--color-gold); opacity: .7; pointer-events: none; }
+.corner-br { right: 0; bottom: 0; border-width: 0 1px 1px 0; }
+.corner-tr { right: 0; top: 0; border-width: 0 1px 0 0; height: 10px; }
+.corner-bl { left: 0; bottom: 0; border-width: 0 0 1px 0; width: 10px; }
+.link-out { display: inline-flex; min-height: 44px; align-items: center; gap: 6px; color: var(--color-bone); font-size: 15px; transition: color .2s; }
+.link-out:hover { color: var(--color-gold); }
+
+/* Pixel sword cursor (fine pointers only) */
+@media (pointer: fine) {
+  html { cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='27' height='27' viewBox='0 0 9 9' shape-rendering='crispEdges'%3E%3Cg fill='%23e6dcc3'%3E%3Crect width='1' height='1'/%3E%3Crect x='1' y='1' width='1' height='1'/%3E%3Crect x='2' y='2' width='1' height='1'/%3E%3Crect x='3' y='3' width='1' height='1'/%3E%3Crect x='4' y='4' width='1' height='1'/%3E%3C/g%3E%3Cg fill='%23f2b84b'%3E%3Crect x='3' y='5' width='1' height='1'/%3E%3Crect x='5' y='3' width='1' height='1'/%3E%3Crect x='4' y='5' width='1' height='1'/%3E%3Crect x='5' y='4' width='1' height='1'/%3E%3C/g%3E%3Cg fill='%23e8832a'%3E%3Crect x='6' y='6' width='1' height='1'/%3E%3Crect x='7' y='7' width='1' height='1'/%3E%3C/g%3E%3C/svg%3E") 0 0, auto; }
+  a, button, summary, [tabindex='0'] { cursor: inherit; }
+}
+@keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
