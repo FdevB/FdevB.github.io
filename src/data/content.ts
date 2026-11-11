@@ -15,30 +15,30 @@ export const nav = [
 ];
 
 export const hero = {
-  eyebrow: "The Developer's Bonfire",
-  motto: 'Rest. Refactor. Rise.',
+  eyebrow: 'My Own Bonfire',
+  motto: 'Think. Learn. Create.',
   name: 'Farham',
   role: 'Backend Engineer · AI Engineer',
-  tagline: 'I forge reliable APIs and intelligent systems. Prepare to ship.',
-  primary: { label: 'View My Relics', href: '#relics' },
+  tagline: 'Python, Django, APIs, and everything behind them.',
+  primary: { label: 'Explore My Work', href: '#relics' },
   secondary: { label: 'Place a Summon Sign', href: '#summon' },
   availability: 'Open to opportunities',
 };
 
 
 export const status = {
-  title: 'A builder at the bonfire.',
-  heading: 'Clean systems. Quiet persistence.',
+  title: 'A creator at the bonfire.',
+  heading: 'Engineering with curiosity.',
   bio: [
-    'I’m a backend developer building clean, well-tested systems with Python and Django. Now I’m extending that craft into AI engineering — LLM apps and data pipelines.',
+    'I’m a backend developer working primarily with Python and Django, with a growing interest in AI engineering and building LLM-powered applications.',
     'Architecture, algorithms, math, and clean code keep me curious.',
   ],
-  chips: ['Service/Selector Architecture', 'Test-Driven', 'API Design'],
+  chips: ['Django & DRF', 'API Design', 'System Design'],
   stats: [
     ['Class', 'Backend Engineer'],
-    ['Covenant', 'Open Source & Clean Code'],
-    ['Starting gift', 'Python'],
-    ['Location', '[City]'],
+    ['Covenant', 'Lifelong Learning'],
+    ['Starting Gift', 'Python'],
+    ['Location', 'Mashhad'],
     ['Languages', 'English, Persian'],
   ] as [string, string][],
   availability: 'Open to opportunities',
@@ -46,49 +46,52 @@ export const status = {
 
 type Skill = { name: string; level?: number; flavor: string; use: string };
 export const attributes = {
-  title: 'Choose your equipment.',
+  title: 'My equipments.',
   sub: 'A practical arsenal for reliable systems.',
   note: 'Levels are illustrative · select a tab to explore',
   max: 50,
   tabs: [
-    { id: 'backend', label: 'Backend', tone: 'ember', skills: [
-      { name: 'Python', level: 40, flavor: 'A familiar flame for unfamiliar problems.', use: 'Services, scripts and tested business logic.' },
-      { name: 'Django', level: 38, flavor: 'Batteries included, discipline required.', use: '[What you built with Django.]' },
-      { name: 'Django REST Framework', level: 36, flavor: 'Contracts between systems.', use: '[APIs you shipped with DRF.]' },
-      { name: 'PostgreSQL', level: 34, flavor: 'Where the data keeps its promises.', use: '[Schemas, indexes, query tuning.]' },
-      { name: 'Redis', level: 28, flavor: 'Fast memory for hot paths.', use: '[Caching, rate limiting, queues.]' },
-      { name: 'REST API design', level: 36, flavor: 'Predictable endpoints, honest errors.', use: '[Versioning, pagination, auth.]' },
-      { name: 'Custom auth/user models', level: 32, flavor: 'Identity, on your own terms.', use: '[Custom user model and auth flows.]' },
-      { name: 'Service/selector architecture', level: 34, flavor: 'Writes in services, reads in selectors.', use: '[How you structure Django projects.]' },
-    ] },
-    { id: 'ai', label: 'AI', tone: 'moon', skills: [
-      { name: 'LLM applications', level: 24, flavor: 'Language, given structure.', use: '[LLM features you built.]' },
-      { name: 'Prompt engineering', level: 26, flavor: 'Ask precisely, receive usefully.', use: '[Prompting and evaluation habits.]' },
-      { name: 'RAG', level: 22, flavor: 'Retrieve first, then speak.', use: '[Retrieval pipeline you built.]' },
-      { name: 'Embeddings & vector search', level: 22, flavor: 'Meaning, measured as distance.', use: '[Vector store and search setup.]' },
-      { name: 'Model evaluation', level: 20, flavor: 'Trust, but measure.', use: '[How you test model quality.]' },
-      { name: '[add your real tools]', flavor: 'An empty slot, waiting for an item.', use: '[Add a tool.]' },
-    ] },
-    { id: 'tools', label: 'Tools', tone: 'ember', skills: [
-      { name: 'Git', level: 36, flavor: 'Every change, remembered.', use: '[Workflow you follow.]' },
-      { name: 'Docker', level: 30, flavor: 'The same world, everywhere.', use: '[Containerised projects.]' },
-      { name: 'pytest', level: 34, flavor: 'Proof before shipping.', use: 'Unit and API tests with factory_boy fixtures.' },
-      { name: 'factory_boy', level: 30, flavor: 'Test data on demand.', use: '[Factories you maintain.]' },
-      { name: 'Linux', level: 32, flavor: 'The terrain you deploy into.', use: '[Servers, shells, debugging.]' },
-      { name: 'CI/CD', level: 28, flavor: 'Ship on every push.', use: '[Pipelines you set up.]' },
-      { name: '[add more]', flavor: 'An empty slot, waiting for an item.', use: '[Add a tool.]' },
-    ] },
+    {
+      id: 'backend', label: 'Backend', tone: 'ember', skills: [
+        { name: 'Python', level: 44, flavor: 'A familiar flame for unfamiliar problems.', use: 'Business logic, scripts, and reusable components.' },
+        { name: 'Django', level: 38, flavor: 'Batteries included, discipline required.', use: 'Building application backends and data-driven systems.' },
+        { name: 'Django REST Framework', level: 34, flavor: 'Contracts between systems.', use: 'Developing REST APIs and handling authentication.' },
+        { name: 'PostgreSQL', level: 34, flavor: 'Where the data keeps its promises.', use: 'Relational data modeling, SQL, and Django ORM queries.' },
+        { name: 'Redis', level: 32, flavor: 'Fast memory for hot paths.', use: 'Caching, temporary data storage, and fast data access.' },
+        { name: 'REST API Design', level: 36, flavor: 'Predictable endpoints, honest errors.', use: 'Designing endpoints, serializers, and response structures.' },
+        { name: 'Authentication & Authorization', level: 32, flavor: 'Identity, on your own terms.', use: 'Custom user models, OTP flows, and access control.' },
+        { name: 'Service / Selector Pattern', level: 40, flavor: 'Writes in services, reads in selectors.', use: 'Separating write operations and read queries in Django.' },
+        { name: 'Third-party API Integration', level: 34, flavor: 'Connecting applications beyond their boundaries.', use: 'Integrating external services, including Tipax APIs.' },
+      ]
+    },
+    {
+      id: 'ai', label: 'AI', tone: 'moon', skills: [
+        { name: 'LLM applications', level: 28, flavor: 'Language, given structure.', use: 'Building Telegram bots with multi-model support and conversation context.' },
+        { name: 'LLM API Integration', level: 28, flavor: 'Bridging applications and language models.', use: 'Connecting applications to different LLM providers and models.' },
+        { name: 'Prompt engineering', level: 26, flavor: 'Ask precisely, receive usefully.', use: 'Designing prompts and structured model interactions.' },
+        { name: 'RAG Fundamentals', level: 20, flavor: 'Retrieve first, then speak.', use: 'Exploring retrieval pipelines and context injection.' },
+        { name: 'Embeddings & vector search', level: 18, flavor: 'Meaning, measured as distance.', use: 'Exploring semantic representations and vector retrieval.' },
+      ]
+    },
+    {
+      id: 'tools', label: 'Tools', tone: 'ember', skills: [
+        { name: 'Git & GitHub', level: 36, flavor: 'Every change, remembered.', use: 'Version control, branching, and collaborative workflows.' },
+        { name: 'Docker', level: 30, flavor: 'The same world, everywhere.', use: 'Learning containerization and development environments.' },
+        { name: 'pytest', level: 34, flavor: 'Proof before shipping.', use: 'Writing and running automated tests.' },
+        { name: 'Linux', level: 32, flavor: 'The terrain you deploy into.', use: 'Command-line workflows, environment management, and debugging.' },
+      ]
+    },
   ] as { id: string; label: string; tone: 'ember' | 'moon'; skills: Skill[] }[],
 };
 
 export const journey = {
-  title: 'The bonfire trail.',
+  title: 'The Path to Salvation.',
   sub: 'Every system built is another fire kindled.',
   lit: 'Bonfire lit',
   items: [
-    { role: 'Backend Developer', org: '[Company]', date: '2023–Present', lit: true, bullets: ['Built and maintained [N] Python / Django APIs.', 'Reduced response time by [X%] with query optimization.'] },
-    { role: 'Freelance Django Developer', org: 'Independent projects', date: '[Date range]', lit: false, bullets: ['Delivered [N] backend services from brief to deployment.', 'Added automated tests with [X%] coverage.'] },
-    { role: 'Education – [Degree]', org: '[Institution]', date: '[Date range]', lit: false, bullets: ['Focused on algorithms, architecture, and mathematics.', 'Completed [N] applied software projects.'] },
+    { role: 'Project Manager · System Designer · Developer', org: 'Travel Platform · NDA', date: '2026–Present', lit: true, bullets: ['Leading project planning, requirement analysis, and system architecture.', 'Contributing to technical decisions and backend development.'] },
+    { role: 'Full-Stack Developer', org: 'KIMOTEH · E-commerce Platform', date: '2026', lit: true, bullets: ['Designed and developed the platform from the ground up, including backend, frontend, and database architecture.', 'Implemented core e-commerce features, authentication, and business logic.'] },
+    { role: 'Full-Stack Developer', org: 'SetarehAds · Blog Platform', date: '2025', lit: false, bullets: ['Designed and developed the platform architecture and core application components.', 'Worked across backend, frontend, and database implementation.'] },
   ],
 };
 
@@ -96,36 +99,41 @@ export const relics = {
   title: 'The boss archive.',
   sub: 'Selected builds. Hard problems. Useful outcomes.',
   featured: {
-    title: 'The Multilingual Archive',
-    desc: 'A Django / DRF blog API with multilingual content, custom authentication, and thoughtful rate limiting.',
-    tags: ['Django', 'DRF', 'PostgreSQL'], label: 'Boss defeated: N+1 queries',
-    demo: { req: 'GET /api/v1/posts/', res: '200 OK', note: 'Authenticated · Rate limited' },
+    title: 'FdevBKit',
+    desc: 'A reusable Django REST Framework toolkit built to standardize API responses, simplify common patterns, and reduce repetitive code.',
+    tags: ['Python', 'Django', 'DRF', 'pytest'], label: 'Relic type: Developer Toolkit',
+    demo: { req: 'APIResponse.success(data=payload)', res: '200 OK · Standardized JSON', note: 'Consistent API response structure' },
     live: '#', github: '#',
   },
   items: [
-    { title: 'The Backend Toolkit', desc: 'Reusable backend logic. Less boilerplate, more deliberate architecture.', tags: ['Python', 'Django', 'pytest'], label: 'Relic type: developer tools', live: '#', github: '#' },
-    { title: 'Echoes of Knowledge', desc: 'An LLM / RAG app that retrieves context before generating answers.', tags: ['LLM', 'RAG', 'Vector search'], label: 'Boss defeated: lost context', live: '#', github: '#' },
-    { title: 'The Merchant’s Engine', desc: 'An e-commerce backend for products, orders, and reliable checkout.', tags: ['DRF', 'Redis', 'PostgreSQL'], label: 'Relic type: commerce API', live: '#', github: '#' },
+    { title: 'Tipax API Integration', desc: 'An automated order-registration workflow built by integrating with the Tipax API.', tags: ['Python', 'REST API', 'Integration'], label: 'Boss defeated: Manual workflow', live: '#', github: '#' },
+    { title: 'Multi-Model Telegram Bot', desc: 'A Telegram chatbot connecting multiple LLM providers, with conversation context preserved across interactions.', tags: ['Python', 'LLM', 'OpenRouter', 'Telegram Bot API'], label: 'Relic type: Multi-model LLM application', live: '#', github: '#' },
   ],
 };
 
 export const library = {
   title: 'Currently studying',
   sub: 'The next chapter is always open.',
-  books: ['Python', 'Django', 'PostgreSQL', 'Algorithms & Math', 'Clean Code'],
+  books: [
+    'Advanced Django & DRF',
+    'SQL & Database Optimization',
+    'Redis & Celery',
+    'Docker & Containerization',
+    'AI Engineering & LLM Applications',
+    'Software Architecture & Design Patterns',
+  ],
 };
 
 export const contact = {
   title: 'Place your summon sign',
-  sub: 'Have a project or a role in mind? Let’s cooperate.',
-  email: '[you@example.com]',
+  sub: 'Have a project in mind or an opportunity to discuss? Let’s connect.',
+  email: '',
   // Paste a Formspree / Web3Forms / your own DRF endpoint here. Empty = mailto: fallback.
   formEndpoint: '',
   links: [
-    { label: 'GitHub', href: '[https://github.com/your-name]' },
-    { label: 'LinkedIn', href: '[https://linkedin.com/in/your-name]' },
-    { label: '[Telegram]', href: '[https://t.me/your-name]' },
+    { label: 'GitHub', href: 'https://github.com/FdevB' },
+    { label: 'LinkedIn', href: 'https://www.linkedin.com/in/fdevb' },
   ],
   footerLeft: 'Praise the Sun \\[T]/',
-  footerRight: '© Farham · Forged with intention.',
+  footerRight: '© FarhamB.dev · Forged with intention.',
 };
